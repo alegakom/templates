@@ -1,0 +1,36 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+---
+spring:
+  profiles:
+    active: git
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      server:
+        git:
+          uri: https://github.com/alegakom/ms-config-properties
+          search-paths:
+            - "ms-config-properties/{application}/{profile}"
+
+---
+spring:
+  profiles: native
+  cloud:
+      config:
+        server:
+          native:
+            search-locations:
+              #            file://PATH_TO_MICROSERVICES_PROJECT/ms-config-properties/{application}/{profile},
+              /home/ks/IdeaProjects/Gallery-Service/ms-config-properties/{application}/{profile},
+
+

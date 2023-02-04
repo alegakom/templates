@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: eureka-client
+
+eureka:
+  client:
+    enabled: true #автоматическая регистрация
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+    eureka-service-url-poll-interval-seconds: 35 # 3 укажите интервал в 35 сек через который клиент шлет эхо запрос на сервер
+  instance:
+    preferIpAddress: true # 2 использовать IP адрес
+    lease-renewal-interval-in-seconds: 30
+
